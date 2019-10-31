@@ -12,7 +12,7 @@ Retrieves all documents.
 
 >GET /api/cr_reviews/:id
 
-Enter in an to fetch that document.  Ids are stored as numbers, not ObjectIDs.
+Enter id to fetch that document.  Ids are stored as numbers, not ObjectIDs.
 
 ### Post new document
 

@@ -105,7 +105,7 @@ class CR_reviews extends React.Component {
                 console.log(error);
             })
             .finally(() => {
-                console.log(this.state);
+                // console.log(this.state);
             })
     }
 
@@ -113,7 +113,7 @@ class CR_reviews extends React.Component {
     render() {
         // console.log("render",this.state);
         return (
-        
+
             <ContentReviews className="content_reviews">
                 <CRGlobalStyle />
                 <CRHeader movieName={this.state.movieName} list={this.state.displayTop10}

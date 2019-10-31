@@ -1,19 +1,21 @@
 const mongoose = require('mongoose');
 const Randomly = require('./randomGenerate');
-
+const autoIncrement = require('mongoose-auto-increment');
 const mongodbUrl = 'mongodb://localhost:27017/cr_database';
-mongoose.connect(mongodbUrl, {
+var connection = mongoose.createConnection(mongodbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-const db = mongoose.connection;
+autoIncrement.initialize(connection);
+// const db = mongoose.connection;
 
-// eslint-disable-next-line no-console
-db.on('error', console.error.bind(console, 'connection err'));
-db.once('open', () => {
-  'Connection succeeded.';
-});
+// // eslint-disable-next-line no-console
+// db.on('error', console.error.bind(console, 'connection err'));
+// db.once('open', () => {
+//   autoIncrement.initialize(db);
+//   'Connection succeeded.';
+// });
 
 const rvSchema = mongoose.Schema({
   movie_name: String,
@@ -31,9 +33,12 @@ const crSchema = mongoose.Schema({
   reviews: rvSchema,
 });
 
-const CReviews = mongoose.model('CReviews', rvSchema);
-const CReview = mongoose.model('CReview', crSchema);
+crSchema.plugin(autoIncrement.plugin, 'CReview')
 
+const CReviews = connection.model('CReviews', rvSchema);
+const CReview = connection.model('CReview', crSchema);
+
+//Create a unique id
 const saveCReviews = ((creviews) => {
   creviews.forEach((review) => {
     const data = review.reviews.date_post || Randomly.RandomDate();

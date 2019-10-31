@@ -13,7 +13,7 @@ class CReview extends React.Component {
     }
     //method for re-setState after pass in props be changed by parent event.
     UNSAFE_componentWillReceiveProps(props) {
-        this.setState({ currtReview: props.item });  
+        this.setState({ currtReview: props.item });
     }
 
     extendToggled() {
@@ -28,7 +28,7 @@ class CReview extends React.Component {
         src: "",
         postReview: ""
     }
-    this.state.currtReview.rate >= 3 ? states.src = "https://hrr41-fec-img.s3-us-west-1.amazonaws.com/user_pics/hp.png" : states.src = "https://hrr41-fec-img.s3-us-west-1.amazonaws.com/user_pics/sp.png"; 
+    this.state.currtReview.rate >= 3 ? states.src = "https://hrr41-fec-img.s3-us-west-1.amazonaws.com/user_pics/hp.png" : states.src = "https://hrr41-fec-img.s3-us-west-1.amazonaws.com/user_pics/sp.png";
     this.state.currtToggle ? states.postReview = this.state.currtReview.review : states.postReview = this.state.currtReview.review.split(".")[0].concat(" ...");
     return(
     <Review_quote className="single_review_container">
@@ -37,9 +37,9 @@ class CReview extends React.Component {
             <Media_img data-src={states.src} className="img" src={states.src} ></Media_img>
             </Potato_pull_left>
             <Review_block className="media-body quote_bubble__quote" cite="http://google.com">
-                
+
                 <Review_style Toggle={this.state.currtToggle} className="review_paragraph" onClick={this.extendToggled}>{states.postReview}</Review_style>
-            
+
                 <Small_bar className="pull-right smaller">
                     {this.state.currtReview.date_post} | Rating: {this.state.currtReview.rate}/5 | <ExtendReview extendR={this.extendToggled} extentR={this.state.currtToggle}/>
                 </Small_bar>

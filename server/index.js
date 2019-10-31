@@ -10,12 +10,24 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('./public'));
 
-app.get('/api/cr_reviews', (req, res) => {
-  db.getCReviews((err, results) => {
-    if (err) throw err;
-    res.send(results).end();
-  });
+app.get('/api/cr_reviews/:id', (req, res) => {
+  if (req.params.id) {
+    db.getCReviewsById(req.params.id, (err, doc) => {
+      if (err) {
+        res.sendStatus(404)
+      } else {
+        res.send(doc);
+      }
+    })
+  } else {
+    db.getCReviews((err, results) => {
+      if (err) throw err;
+      res.send(results).end();
+    });
+  }
 });
+
+
 
 
 app.listen(port, () => {

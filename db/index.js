@@ -80,8 +80,19 @@ const getCReviews = (callback) => {
     });
 };
 
+const getCReviewsById = (id, callback) => {
+  CReview.find({_id: id}, (err, doc) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, doc)
+    }
+  })
+}
+
 module.exports = {
   CReview,
   saveCReviews,
   getCReviews,
+  getCReviewsById
 };

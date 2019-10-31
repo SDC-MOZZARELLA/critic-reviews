@@ -5,11 +5,13 @@
 ### Get all documents
 
 >GET /api/cr_reviews/
+
 Retrieves all documents.
 
 ### Get one document
 
 >GET /api/cr_reviews/:id
+
 Enter in an to fetch that document.  Ids are stored as numbers, not ObjectIDs.
 
 ### Post new document
@@ -42,6 +44,7 @@ User must supply id of document to update.  New information must be stored in qu
 
 Example:
 >/api/cr_reviews/300?user_name=Sarah
+
 Assuming there is a document with id 300, the user_name field will be changed to Sarah.
 
 ### Delete document

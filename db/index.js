@@ -94,6 +94,16 @@ const postNewReview = (data) => {
     saveCReviews([data]);
 }
 
+const updateReview = (id, query, callback) => {
+  CReview.findOneAndUpdate({_id: id}, query, (err, doc) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, doc);
+    }
+  })
+}
+
 const deleteReview = (id, callback) => {
   CReview.remove({_id: id}, (err, doc) => {
     if (err) {
@@ -110,5 +120,6 @@ module.exports = {
   getCReviews,
   getCReviewsById,
   postNewReview,
-  deleteReview
+  deleteReview,
+  updateReview
 };

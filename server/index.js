@@ -33,6 +33,17 @@ app.post('/api/cr_reviews/', (req, res) => {
   res.status(201).send('Review saved to database');
 })
 
+app.put('/api/cr_reviews/:id', (req, res) => {
+  console.log(req.query)
+  db.updateReview(req.params.id, req.query, (err, doc) => {
+    if (err) {
+      res.status(400).send(`Could not update document at id:${req.params.id}`)
+    } else {
+      res.status(202).send(`Successfully updated document id:${req.params.id}`)
+    }
+  })
+})
+
 app.delete('/api/cr_reviews/:id', (req, res) => {
   db.deleteReview(req.params.id, (err, doc) => {
     if (err) {

@@ -90,9 +90,25 @@ const getCReviewsById = (id, callback) => {
   })
 }
 
+const postNewReview = (data) => {
+    saveCReviews([data]);
+}
+
+const deleteReview = (id, callback) => {
+  CReview.remove({_id: id}, (err, doc) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, doc);
+    }
+  })
+}
+
 module.exports = {
   CReview,
   saveCReviews,
   getCReviews,
-  getCReviewsById
+  getCReviewsById,
+  postNewReview,
+  deleteReview
 };

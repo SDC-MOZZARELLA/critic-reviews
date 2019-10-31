@@ -10,8 +10,15 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('./public'));
 
+app.get('/api/cr_reviews/', (req, res) => {
+    db.getCReviews((err, results) => {
+      if (err) throw err;
+      res.send(results).end();
+    });
+
+});
+
 app.get('/api/cr_reviews/:id', (req, res) => {
-  if (req.params.id) {
     db.getCReviewsById(req.params.id, (err, doc) => {
       if (err) {
         res.sendStatus(404)
@@ -19,13 +26,23 @@ app.get('/api/cr_reviews/:id', (req, res) => {
         res.send(doc);
       }
     })
-  } else {
-    db.getCReviews((err, results) => {
-      if (err) throw err;
-      res.send(results).end();
-    });
-  }
-});
+})
+
+app.post('/api/cr_reviews/', (req, res) => {
+  db.postNewReview(req.body)
+  res.status(201).send('Review saved to database');
+})
+
+app.delete('/api/cr_reviews/:id', (req, res) => {
+  db.deleteReview(req.params.id, (err, doc) => {
+    if (err) {
+      res.send('Fail: Your request could not be processed.')
+    } else {
+      res.status(202).send("Document successfully deleted")
+    }
+  })
+})
+
 
 
 

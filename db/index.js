@@ -5,8 +5,9 @@ const client = new Client({
 
 const connection = async () => {
   await client.connect()
-const res = await client.query("SELECT * from mypostgrestable");
-console.log(res.rows) // Hello world!
+const res = await client.query("SELECT * from mypostgrestable")
+  .then(() => )
+// console.log(res.rows)
 await client.end()
 }
 
@@ -75,7 +76,6 @@ connection();
 //     });
 
 //     const crReview = new CReview({
-//       id: idIndex,
 //       user_name: name,
 //       user_photo: photo,
 //       user_page: review.user_page,

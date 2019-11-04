@@ -35,6 +35,10 @@ const RandomPublication = () => {
   return publications[Math.floor(Math.random() * 7)];
 };
 
+const RandomReviewerId = () => {
+  return Math.floor(Math.random() * 13 * 13) + 1;
+}
+
 module.exports = {
   RandomMovie,
   RandomDate,
@@ -43,4 +47,5 @@ module.exports = {
   RandomRate,
   RandomPhoto,
   RandomPublication,
+  RandomReviewerId
 };

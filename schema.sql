@@ -20,14 +20,11 @@ CREATE TABLE reviews (
   id SERIAL PRIMARY KEY,
   movie_name VARCHAR(60),
   review TEXT,
-  rate DECIMAL,
-  rank DECIMAL,
+  rate numeric,
+  rank int,
   publication VARCHAR(60),
-  date_post VARCHAR(40),
+  review_date VARCHAR(60),
   reviewer_id int DEFAULT NULL,
   FOREIGN KEY (reviewer_id) REFERENCES critic(ID)
 );
 
-/*
-in the command line in the project root directory, psql -f schema.sql
-*/

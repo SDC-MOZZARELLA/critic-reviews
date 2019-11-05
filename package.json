@@ -7,6 +7,7 @@
     "test": "jest",
     "build": "webpack -d --watch",
     "start": "nodemon server/index.js -w server",
+    "generate": "node ./db/generateCSVfiles.js",
     "seed": "node --max-old-space-size=7000 db/seed.js"
   },
   "repository": {
@@ -33,6 +34,7 @@
     "mongoose-auto-increment": "^5.0.1",
     "path": "^0.12.7",
     "pg": "^7.12.1",
+    "pg-copy-streams": "^2.2.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "styled-components": "^4.4.0",

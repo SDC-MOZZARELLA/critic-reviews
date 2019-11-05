@@ -9,13 +9,13 @@ let critics = [];
 generateCritics(critics);
 
 function writeCriticsCSV(writer, data, callback) {
-  let i = critics.length - 1;
+  let i = critics.length;
   write();
   function write() {
     let ok = true;
     do {
-      data = critics[i];
       i -= 1;
+      data = critics[i];
       if (i === 0) {
         writer.write(data, callback);
       } else {
@@ -29,12 +29,12 @@ function writeCriticsCSV(writer, data, callback) {
 }
 
 function writeReviewsCSV(writer, data, callback) {
-  let i = 10000000;
+  let i = 100;
   write();
   function write() {
     let ok = true;
     do {
-      data = [Randomly.RandomMovie(), faker.lorem.paragraph(), Randomly.RandomRate(), Randomly.RandomRank(), Randomly.RandomPublication(), Randomly.RandomReviewerId()];
+      data = [Randomly.RandomMovie(), faker.lorem.paragraph(), Randomly.RandomRate(), Randomly.RandomRank(), Randomly.RandomPublication(), faker.date.between('1965-01-01', '2019-11-4'),Randomly.RandomReviewerId()];
       i -= 1;
       if (i === 0) {
         writer.write(data, callback);
@@ -49,7 +49,8 @@ function writeReviewsCSV(writer, data, callback) {
 }
 
 let writer = csvWriter({
-  headers: ['user_name', 'user_photo', 'user_page']
+  headers: ['user_name', 'user_photo', 'user_page'],
+  sendHeaders: false
 })
 writer.pipe(fs.createWriteStream('criticData.csv'))
 
@@ -58,7 +59,8 @@ writeCriticsCSV(writer, data, () => {
 })
 
 writer = csvWriter({
-  headers: ['movie_name', 'review', 'rate', 'rank', 'publication', 'reviewer_id']
+  headers: ['movie_name', 'review', 'rate', 'rank', 'publication', 'review_date','reviewer_id'],
+  sendHeaders: false
 });
 
 writer.pipe(fs.createWriteStream('reviewsData.csv'))

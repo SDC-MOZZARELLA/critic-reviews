@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const RandomDate = () => {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 

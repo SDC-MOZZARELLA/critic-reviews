@@ -29,7 +29,7 @@ function writeCriticsCSV(writer, data, callback) {
 }
 
 function writeReviewsCSV(writer, data, callback) {
-  let i = 100;
+  let i = 10000000;
   write();
   function write() {
     let ok = true;

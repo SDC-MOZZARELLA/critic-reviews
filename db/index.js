@@ -93,9 +93,7 @@ const getCReviews = (callback) => {
       callback(null, results);
     });
 };
-const getPGReviews = (callback) => {
 
-}
 
 const getCReviewsById = (id, callback) => {
   CReview.find({_id: id}, (err, doc) => {

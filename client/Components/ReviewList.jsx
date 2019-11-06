@@ -15,8 +15,8 @@ const ReviewList = (props) => {
             currtList.map((item, index) => (
                 <ul key={index}>
                     <Top_critic className="single_review" index={index}>
-                        <CReview item={item.reviews} index={index} />                            
-                        <ReviewSource photo={item.user_photo} username={item.user_name} publication={item.reviews.publication} topCritic={item.reviews.rank}/>
+                        <CReview item={item} index={index} />
+                        <ReviewSource photo={item.user_photo} username={item.user_name} publication={item.publication} topCritic={item.rank}/>
                     </Top_critic>
                 </ul>
             ))

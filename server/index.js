@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const postgresRoutes = require('../db/postgresRoutes.js');
 const port = process.env.PORT || 4540;
 
 const db = require('../db');
@@ -11,10 +11,17 @@ app.use(cors());
 app.use(express.static('./public'));
 
 app.get('/api/cr_reviews/', (req, res) => {
-    db.getCReviews((err, results) => {
-      if (err) throw err;
-      res.send(results).end();
-    });
+  postgresRoutes.get100Reviews((err, rows) => {
+    if (err) {
+      res.sendStatus(400)
+    } else {
+      res.send(rows)
+    }
+  })
+    // db.getCReviews((err, results) => {
+    //   if (err) throw err;
+    //   res.send(results).end();
+    // });
 
 });
 

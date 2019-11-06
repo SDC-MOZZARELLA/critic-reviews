@@ -69,23 +69,22 @@ class CR_reviews extends React.Component {
     fetchCReviews() {
         Axios.get('http://127.0.0.1:4540/api/cr_reviews')
             .then(results => {
-                console.log(results)
                 this.setState({
                     //randomly choose one movie name from db
-                    movieName: results.data[Math.floor(Math.random() * 99)].reviews.movie_name,
+                    movieName: results.data[Math.floor(Math.random() * 99)].movie_name,
                     displayCR: results.data
                 })
             })
             .then(() => {
                 this.setState({
-                    displayCR: this.state.displayCR.filter(result => result.reviews.movie_name == this.state.movieName
+                    displayCR: this.state.displayCR.filter(result => result.movie_name == this.state.movieName
                     )
                 })
             })
             .then(() => {
                 let tc, f, s;
-                tc = this.state.displayCR.filter(result => result.reviews.rank == "1").length;
-                f = this.state.displayCR.filter(result => result.reviews.rate >= 3).length;
+                tc = this.state.displayCR.filter(result => result.rank == "1").length;
+                f = this.state.displayCR.filter(result => result.rate >= 3).length;
                 s = this.state.displayCR.length - f;
 
                 this.setState({

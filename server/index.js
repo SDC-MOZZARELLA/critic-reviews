@@ -23,11 +23,6 @@ app.get('/api/cr_reviews/', (req, res) => {
       res.send(docs);
     }
   });
-  // Mongo
-  // db.getCReviews((err, results) => {
-  //   if (err) throw err;
-  //   res.send(results).end();
-  // });
 });
 
 app.get('/api/cr_reviews/:id', (req, res) => {
@@ -38,14 +33,6 @@ app.get('/api/cr_reviews/:id', (req, res) => {
       res.send(doc);
     }
   });
-  // Mongo
-  // db.getCReviewsById(req.params.id, (err, doc) => {
-  //   if (err) {
-  //     res.sendStatus(404)
-  //   } else {
-  //     res.send(doc);
-  //   }
-  // })
 });
 
 app.post('/api/cr_reviews/', (req, res) => {
@@ -57,10 +44,6 @@ app.post('/api/cr_reviews/', (req, res) => {
       res.status(201).send('Thank you for your review!');
     }
   });
-  // Mongo
-  // [data.user_name, data.user_photo, data.user_page]
-  // db.postNewReview(req.body)
-  // res.status(201).send('Review saved to database');
 });
 
 app.put('/api/cr_reviews/:id', (req, res) => {
@@ -71,15 +54,6 @@ app.put('/api/cr_reviews/:id', (req, res) => {
       res.status(202).send(`Successfully updated id: ${req.params.id}`);
     }
   });
-
-  // Mongo
-  // db.updateReview(req.params.id, req.query, (err, doc) => {
-  //   if (err) {
-  //     res.status(400).send(`Could not update document at id:${req.params.id}`)
-  //   } else {
-  //     res.status(202).send(`Successfully updated document id:${req.params.id}`)
-  //   }
-  // })
 });
 
 app.delete('/api/cr_reviews/:id', (req, res) => {
@@ -90,15 +64,6 @@ app.delete('/api/cr_reviews/:id', (req, res) => {
       res.status(202).send(`Successfully removed id: ${req.params.id}`);
     }
   });
-
-  // Mongo
-  // db.deleteReview(req.params.id, (err, doc) => {
-  //   if (err) {
-  //     res.send('Fail: Your request could not be processed.')
-  //   } else {
-  //     res.status(202).send("Document successfully deleted")
-  //   }
-  // })
 });
 
 app.listen(port, () => {

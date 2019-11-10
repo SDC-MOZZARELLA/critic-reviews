@@ -17,9 +17,9 @@ const app = express();
 const port = process.env.PORT || 4540;
 const server = new RedisServer(6379);
 server.open((err) => {
-  if (err === null) {
-    // You may now connect a client to the Redis
-    // server bound to port 6379.
+  if (err) {
+    // eslint-disable-next-line no-console
+    console.log('Could not connect Redis server');
   }
 });
 
@@ -34,7 +34,6 @@ app.use(express.static('./public'));
 app.get('/api/cr_reviews/', (req, res) => {
   client.get('getAll', (err, result) => {
     if (result) {
-      console.log('was in cache')
       const resultJSON = JSON.parse(result);
       res.status(200).send(resultJSON);
     } else {
@@ -51,13 +50,22 @@ app.get('/api/cr_reviews/', (req, res) => {
 });
 
 app.get('/api/cr_reviews/:id', (req, res) => {
-  postgresRoutes.getOneReview(req.params.id, (err, doc) => {
-    if (err) {
-      res.sendStatus(404);
+  client.get(req.params.id, (err, result) => {
+    if (result) {
+      const resultJSON = JSON.parse(result);
+      res.status(200).send(resultJSON);
     } else {
-      res.send(doc);
+      postgresRoutes.getOneReview(req.params.id, (err2, doc) => {
+        if (err2) {
+          res.sendStatus(404);
+        } else {
+          client.set(req.params.id, JSON.stringify(doc), 'EX', 3600);
+          res.send(doc);
+        }
+      });
     }
-  });
+  })
+
 });
 
 app.post('/api/cr_reviews/', (req, res) => {

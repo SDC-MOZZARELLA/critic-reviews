@@ -9,11 +9,11 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['My Application'],
+  app_name: ['MoviesLargeData'],
   /**
    * Your New Relic license key.
    */
-  license_key: 'license key here',
+  license_key: '4dbfa3266195b33d17fb59c6a1596ce8d32acb19',
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing

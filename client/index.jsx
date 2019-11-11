@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
@@ -47,17 +48,17 @@ class CR_reviews extends React.Component {
         let displayData;
         let param = event.target.id;
         if (param === "1") {
-            displayData = this.state.displayCR.filter(item => item.reviews.rank == param);
+            displayData = this.state.displayCR.filter(item => item.rank == param);
             this.setStateAfterSort(displayData);
         }
 
         if (param === "fresh") {
-            displayData = this.state.displayCR.filter(item => item.reviews.rate >= 3);
+            displayData = this.state.displayCR.filter(item => item.rate >= 3);
             this.setStateAfterSort(displayData);
         }
 
         if (param === "spoiled") {
-            displayData = this.state.displayCR.filter(item => item.reviews.rate < 3);
+            displayData = this.state.displayCR.filter(item => item.rate < 3);
             this.setStateAfterSort(displayData);
         }
         if (param === "all") {

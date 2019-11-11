@@ -4,15 +4,16 @@ const pool = new Pool({
   database: 'critic_reviews',
 });
 
+pool.connect();
+
 const get100Reviews = async (callback) => {
-  await pool.connect();
   await pool.query('SELECT * FROM reviews inner join critic ON critic.id = reviews.reviewer_id WHERE reviews.id > 0 and reviews.id <= 100')
     .then((res) => callback(null, res.rows))
     .catch((err) => callback(err));
 };
 
 const getOneReview = async (id, callback) => {
-  await pool.connect();
+  // await pool.connect();
   await pool.query('SELECT * FROM reviews where reviews.id = $1', [id])
     .then((res) => callback(null, res.rows))
     .catch((err) => callback(err));
@@ -20,7 +21,7 @@ const getOneReview = async (id, callback) => {
 
 const postReview = async (data, callback) => {
   let newCriticId;
-  await pool.connect();
+  // await pool.connect();
   await pool.query('INSERT INTO critic(user_name, user_photo, user_page) VALUES($1, $2, $3)', [data.user_name, data.user_photo, data.user_page]);
   await pool.query('SELECT id FROM critic WHERE user_name = $1', [data.user_name])
     .then((result) => {
@@ -44,7 +45,7 @@ const updateReview = async (id, data, callback) => {
   query = query.join(' ').split('');
   query.splice(query.lastIndexOf(','), 1);
   query = query.join('');
-  await pool.connect();
+  // await pool.connect();
   await pool.query(query)
     .then(() => {
       callback(null);
@@ -55,7 +56,7 @@ const updateReview = async (id, data, callback) => {
 };
 
 const deleteReview = async (id, callback) => {
-  await pool.connect();
+  // await pool.connect();
   await pool.query('DELETE FROM reviews WHERE id = $1', [id])
     .then(() => {
       callback(null);

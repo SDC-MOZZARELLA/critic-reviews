@@ -1,5 +1,8 @@
 .DS_Store
 
 node_modules/
-reviewsData.csv
+newrelic.js
+/reviewsData.csv
 criticData.csv
+.env
+

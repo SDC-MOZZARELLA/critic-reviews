@@ -19,7 +19,7 @@ const server = new RedisServer(6379);
 server.open((err) => {
   if (err) {
     // eslint-disable-next-line no-console
-    console.log('Could not connect Redis server');
+    console.log(err);
   }
 });
 
@@ -64,8 +64,7 @@ app.get('/api/cr_reviews/:id', (req, res) => {
         }
       });
     }
-  })
-
+  });
 });
 
 app.post('/api/cr_reviews/', (req, res) => {

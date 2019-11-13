@@ -2,13 +2,14 @@ config:
   target: 'http://localhost:4540'
   phases:
     - duration: 60
-      arrivalRate: 1
+      arrivalRate: 500
   processor: "./generateRandomNumber.js"
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
 scenarios:
   - flow:
-    - function: "generateRandomNumber"
+    # - function: "generateRandomNumber"
     - get:
-        url: "/api/cr_reviews/{{ query }}"
+        url: "/api/cr_reviews/"
+        # url: "/api/cr_reviews/{{ query }}"

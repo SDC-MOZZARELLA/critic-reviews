@@ -46,7 +46,7 @@
     "redis": "^2.8.0",
     "redis-server": "^1.2.2",
     "styled-components": "^4.4.0",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",

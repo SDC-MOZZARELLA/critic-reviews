@@ -30,7 +30,7 @@
     "csv-write-stream": "^2.0.0",
     "csv-writer": "^1.5.0",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "faker": "^4.1.0",
     "fs": "0.0.1-security",
     "httperfjs": "^0.1.0",
